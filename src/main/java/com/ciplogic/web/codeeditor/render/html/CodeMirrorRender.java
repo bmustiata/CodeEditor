@@ -37,10 +37,10 @@ public class CodeMirrorRender {
         var architecture = language.@com.ciplogic.gwtui.ProgrammingLanguage::getArchitecture()();
 
         if (!!architecture) {
-            $wnd.CodeMirror.runMode(code, { mode : {
+            $wnd.CodeMirror.runMode(code, {
                 name : languageName,
                 architecture: architecture
-            }}, parseNode);
+            }, parseNode);
         } else {
             $wnd.CodeMirror.runMode(code, languageName, parseNode);
         }
