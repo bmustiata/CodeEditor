@@ -10,6 +10,8 @@ import com.ciplogic.web.codeeditor.render.languages.LanguageDefinitionsHolder;
 public class GeshiLanguageDefinitionsHolder extends LanguageDefinitionsHolder {
     public GeshiLanguageDefinitionsHolder() {
         addLanguage("Text", "text", ProgrammingLanguage.TEXT);
+        addLanguage("Assembler (ARM)", "arm", ProgrammingLanguage.ASM_ARM);
+        addLanguage("Assembler (x86)", "asm", ProgrammingLanguage.ASM_X86);
         addLanguage("Visual Basic (.NET)", "vbnet", ProgrammingLanguage.VB_NET);
         addLanguage("C", "c", ProgrammingLanguage.C);
         addLanguage("C++", "cpp", ProgrammingLanguage.CPP);
