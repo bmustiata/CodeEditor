@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module rename-to='codeeditor'>
+    <inherits name='com.google.gwt.user.User'/>
+
+    <inherits name="com.google.gwt.json.JSON"/>
+    <inherits name="org.fusesource.restygwt.RestyGWT"/>
+    <inherits name='com.google.gwt.inject.Inject'/>
+    <inherits name="com.ciplogic.GwtUi"/>
+
+    <entry-point class='com.ciplogic.web.codeeditor.CodeEditorEntryPoint'/>
+
+    <stylesheet src="css/chrome.css"/>
+
+    <source path='codeeditor'/>
+</module>

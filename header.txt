@@ -1,0 +1,2 @@
+Copyright (c) 2013, ciplogic.com - Bogdan Mustiata. All rights reserved.
+For licensing, see the LICENSE file from the project's root folder.

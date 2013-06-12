@@ -1,0 +1,19 @@
+/*
+ * CSS for contenteditable='true' editors, that change a <pre/> for code.
+ */
+pre.ciplogic-code {
+    font-family: "Courier New", monospace;
+    font-size: 12px;
+    text-align: left;
+    border: gray solid 1px;
+}
+
+pre.ciplogic-code-show-lines {
+    padding-left: 24px;
+}
+
+pre.ciplogic-code-javascript:before {
+    content: "javascript";
+    float: right;
+    color: gray;
+}

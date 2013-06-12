@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.ciplogic.web</groupId>
+    <artifactId>codeeditor</artifactId>
+    <version>1.0</version>
+    <packaging>war</packaging>
+
+    <properties>
+        <gwt.version>2.5.1</gwt.version>
+    </properties>
+
+    <profiles>
+        <!-- code renderer profiles -->
+        <profile>
+            <id>html</id>
+            <properties>
+                <code.renderer>html</code.renderer>
+                <code.renderer.title>Html</code.renderer.title>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>geshi</id>
+            <properties>
+                <code.renderer>geshi</code.renderer>
+                <code.renderer.title>GeSHi</code.renderer.title>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>geshiwp</id>
+            <properties>
+                <code.renderer>geshiwp</code.renderer>
+                <code.renderer.title>GeSHi</code.renderer.title>
+            </properties>
+        </profile>
+
+        <!-- visual editor profiles -->
+        <profile>
+            <id>mce</id>
+            <properties>
+                <visual.editor>mce</visual.editor>
+                <visual.editor.title>tinyMCE</visual.editor.title>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>ckeditor</id>
+            <properties>
+                <visual.editor>ckeditor</visual.editor>
+                <visual.editor.title>CKEditor</visual.editor.title>
+            </properties>
+        </profile>
+
+        <!-- this is just to convince IDEA to `just run` the thing -->
+        <profile>
+            <id>IDEA</id>
+            <build>
+                <resources>
+                    <resource>
+                        <directory>src/main/configuration/code_renderer/${code.renderer}</directory>
+                    </resource>
+                    <resource>
+                        <directory>src/main/configuration/visual_editor/${visual.editor}</directory>
+                    </resource>
+                    <resource>
+                        <directory>src/main/devel</directory>
+                        <filtering>true</filtering>
+                        <targetPath>${basedir}/target/generated-sources/annotations</targetPath>
+                    </resource>
+                </resources>
+            </build>
+        </profile>
+
+        <profile>
+            <id>production</id>
+            <build>
+                <resources>
+                    <resource>
+                        <directory>src/main/production</directory>
+                        <filtering>true</filtering>
+                    </resource>
+                </resources>
+            </build>
+        </profile>
+    </profiles>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>xerces</groupId>
+                <artifactId>xercesImpl</artifactId>
+                <version>2.10.0</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <!-- GWT -->
+        <dependency>
+            <groupId>com.google.gwt</groupId>
+            <artifactId>gwt-servlet</artifactId>
+            <version>${gwt.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.gwt</groupId>
+            <artifactId>gwt-user</artifactId>
+            <version>${gwt.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.gwt.inject</groupId>
+            <artifactId>gin</artifactId>
+            <version>2.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.ciplogic.gwt</groupId>
+            <artifactId>ciplogic-gwt</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+
+        <!-- server communication -->
+        <dependency>
+            <groupId>org.fusesource.restygwt</groupId>
+            <artifactId>restygwt</artifactId>
+            <version>1.4-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <!-- Generate compiled stuff in the folder used for developing mode -->
+        <plugins>
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.6</version>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <!-- here the phase you need -->
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${basedir}/src/main/java</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>src/main/configuration/code_renderer/${code.renderer}</directory>
+                                </resource>
+                                <resource>
+                                    <directory>src/main/configuration/visual_editor/${visual.editor}</directory>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                    <compilerArguments>
+                        <sourcepath>target/src</sourcepath>
+                    </compilerArguments>
+                </configuration>
+            </plugin>
+
+            <!-- GWT Maven Plugin -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>gwt-maven-plugin</artifactId>
+                <version>2.5.1</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.google.gwt</groupId>
+                        <artifactId>gwt-user</artifactId>
+                        <version>${gwt.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>com.google.gwt</groupId>
+                        <artifactId>gwt-dev</artifactId>
+                        <version>${gwt.version}</version>
+                    </dependency>
+                </dependencies>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>compile</goal>
+                            <goal>test</goal>
+                            <!--
+                                <goal>i18n</goal>
+                                <goal>generateAsync</goal>
+                            -->
+                        </goals>
+                    </execution>
+                </executions>
+                <!-- Plugin configuration. There are many available options, see
+                    gwt-maven-plugin documentation at codehaus.org -->
+                <configuration>
+                    <runTarget>germanium.jsp</runTarget>
+                    <i18nMessagesBundle>com.ciplogic.germanium.web.client.Messages</i18nMessagesBundle>
+                    <!--
+                        <extraJvmArgs>-Xdebug -Xrunjdwp:transport=dt_socket,address=8011,server=y,suspend=n</extraJvmArgs>
+                    -->
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.2.1</version>
+                <executions>
+                    <execution>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <executable>rm</executable>
+                    <arguments>
+                        <argument>-r</argument>
+                        <argument>${basedir}/src/main/java/com/ciplogic/web/codeeditor/gin/config</argument>
+                    </arguments>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>com.mycila.maven-license-plugin</groupId>
+                <artifactId>maven-license-plugin</artifactId>
+                <configuration>
+                    <header>header.txt</header>
+                    <includes>
+                        <include>src/main/java/**</include>
+                        <include>src/main/configuration/**</include>
+                    </includes>
+                </configuration>
+            </plugin>
+        </plugins>
+
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.eclipse.m2e</groupId>
+                    <artifactId>lifecycle-mapping</artifactId>
+                    <version>1.0.0</version>
+                    <configuration>
+                        <lifecycleMappingMetadata>
+                            <pluginExecutions>
+                                <!-- I don't want the GWT to be built on every save.
+                               <pluginExecution>
+                                   <pluginExecutionFilter>
+                                       <groupId>org.codehaus.mojo</groupId>
+                                       <artifactId>gwt-maven-plugin</artifactId>
+                                       <versionRange>[2.4.0,)</versionRange>
+                                       <goals>
+                                           <goal>resources</goal>
+                                           <goal>compile</goal>
+                                           - -
+                                           <goal>i18n</goal>
+                                           <goal>generateAsync</goal>
+                                            - -
+                                       </goals>
+                                   </pluginExecutionFilter>
+                                   <action>
+                                       <execute />
+                                   </action>
+                               </pluginExecution>
+                                -->
+                                <pluginExecution>
+                                    <pluginExecutionFilter>
+                                        <groupId>org.apache.maven.plugins</groupId>
+                                        <artifactId>maven-war-plugin</artifactId>
+                                        <versionRange>[2.1.1,)</versionRange>
+                                        <goals>
+                                            <goal>exploded</goal>
+                                        </goals>
+                                    </pluginExecutionFilter>
+                                    <action>
+                                        <execute />
+                                    </action>
+                                </pluginExecution>
+
+                            </pluginExecutions>
+                        </lifecycleMappingMetadata>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+            <resource>
+                <directory>src/main/java</directory>
+                <filtering>true</filtering>
+            </resource>
+            <resource>
+                <directory>bin</directory>
+                <filtering>true</filtering>
+                <targetPath>${basedir}/target/bin</targetPath>
+            </resource>
+            <resource>
+                <directory>src/main/php</directory>
+                <filtering>true</filtering>
+                <targetPath>${basedir}/target/php</targetPath>
+            </resource>
+        </resources>
+
+        <testResources>
+            <testResource>
+                <directory>src/test/filtered</directory>
+                <filtering>true</filtering>
+            </testResource>
+            <testResource>
+                <directory>src/test/resources</directory>
+            </testResource>
+        </testResources>
+    </build>
+</project>

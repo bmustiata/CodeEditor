@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5" type="plugin" group="editors-xtd" method="upgrade">
+    <name>${visual.editor.title} Ciplogic's CodeEditor (${code.renderer.title})</name>
+    <author>Bogdan Mustiata &lt;bogdan.mustiata@gmail.com&gt;</author>
+    <creationDate>01-02-2013</creationDate>
+    <copyright>Copyright (C) 2013 Bogdan Mustiata, all rights reserved.</copyright>
+    <license>GNU General Public License version 3 or later; see LICENSE.txt</license>
+    <authorEmail>bogdan.mustiata@gmail.com</authorEmail>
+    <authorUrl>http://codeeditor.ciplogic.com</authorUrl>
+    <version>${project.version}</version>
+    <description>A ${visual.editor.title} visual code editor (${code.renderer.title} backend) that adds a button for adding code samples easily.</description>
+    <files>
+        <filename plugin="ciplogic${visual.editor}${code.renderer}codeeditor">ciplogic${visual.editor}${code.renderer}codeeditor.php</filename>
+		<folder>codeeditor${visual.editor}${code.renderer}</folder>
+        <filename>index.html</filename>
+    </files>
+</extension>

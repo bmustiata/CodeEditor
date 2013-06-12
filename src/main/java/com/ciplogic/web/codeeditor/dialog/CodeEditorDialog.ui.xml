@@ -1,0 +1,30 @@
+<!--
+
+    Copyright (c) 2013, ciplogic.com - Bogdan Mustiata. All rights reserved.
+    For licensing, see the LICENSE file from the project's root folder.
+
+-->
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:code="urn:import:com.ciplogic.gwtui.editor"
+             xmlns:g="urn:import:com.google.gwt.user.client.ui"
+        >
+    <g:DockLayoutPanel width="600px" height="400px">
+        <g:north size="32">
+            <g:HTMLPanel>
+                <div class="ButtonBar">
+                    <div style="float : right">
+                        <g:Button text="Close" ui:field="closeButton"/>
+                        <g:Button text="Update" ui:field="updateButton"/>
+                    </div>
+                    <g:HorizontalPanel>
+                        <g:CheckBox ui:field="showLinesCheckBox" text="Lines" styleName="showLinesCheckbox"/>
+                        <g:ListBox ui:field="selectedLanguageCombo"/>
+                    </g:HorizontalPanel>
+                </div>>
+            </g:HTMLPanel>
+        </g:north>
+        <g:center>
+            <code:CodeTextEditor ui:field="codeEditor"/>
+        </g:center>
+    </g:DockLayoutPanel>
+</ui:UiBinder>
