@@ -39,6 +39,14 @@
             </properties>
         </profile>
 
+        <profile>
+            <id>syntaxhighlight</id>
+            <properties>
+                <code.renderer>syntaxhighlight</code.renderer>
+                <code.renderer.title>SyntaxHighlighter</code.renderer.title>
+            </properties>
+        </profile>
+
         <!-- visual editor profiles -->
         <profile>
             <id>mce</id>
