@@ -11,6 +11,8 @@ import static com.ciplogic.gwtui.ProgrammingLanguage.*;
 public class HtmlLanguageDefinitionsHolder extends LanguageDefinitionsHolder {
     public HtmlLanguageDefinitionsHolder() {
         addLanguage("Text", TEXT.toString(), TEXT);
+        addLanguage("Assembler (ARM)", ASM_ARM.toString(), ASM_ARM);
+        addLanguage("Assembler (x86)", ASM_X86.toString(), ASM_X86);
         addLanguage("Visual Basic (.NET)", VB_NET.toString(), VB_NET);
         addLanguage("C", C.toString(), C);
         addLanguage("C++", CPP.toString(), CPP);

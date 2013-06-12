@@ -33,8 +33,17 @@ public class CodeMirrorRender {
 
         this.@com.ciplogic.web.codeeditor.render.html.CodeMirrorRender::html = "";
 
-        var language = language.@com.ciplogic.gwtui.ProgrammingLanguage::getLanguage()();
-        $wnd.CodeMirror.runMode(code, language, parseNode);
+        var languageName = language.@com.ciplogic.gwtui.ProgrammingLanguage::getLanguage()();
+        var architecture = language.@com.ciplogic.gwtui.ProgrammingLanguage::getArchitecture()();
+
+        if (!!architecture) {
+            $wnd.CodeMirror.runMode(code, { mode : {
+                name : languageName,
+                architecture: architecture
+            }}, parseNode);
+        } else {
+            $wnd.CodeMirror.runMode(code, languageName, parseNode);
+        }
 
         return this.@com.ciplogic.web.codeeditor.render.html.CodeMirrorRender::html;
     }-*/;
