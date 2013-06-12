@@ -15,6 +15,9 @@ import com.google.gwt.user.client.DOM;
 import static com.ciplogic.web.codeeditor.render.html.StringFormat.format;
 
 public class SyntaxHighlightCodeRenderer implements CodeRenderer {
+
+    public static final String SHOW_LINES_CLASS_ATTRIBUTE = "gutter";
+
     @Override
     public Element getCodeElement(Element element) {
         while (!"BODY".equals(element.getTagName())) {
@@ -55,7 +58,7 @@ public class SyntaxHighlightCodeRenderer implements CodeRenderer {
 
     @Override
     public boolean isShowLines(Element codeElement) {
-        return "true".equals(getCssAttribute(codeElement, "pad-line-numbers"));
+        return "true".equals(getCssAttribute(codeElement, SHOW_LINES_CLASS_ATTRIBUTE));
     }
 
     private boolean hasBrushCssAttribute(Element element) {
@@ -86,7 +89,7 @@ public class SyntaxHighlightCodeRenderer implements CodeRenderer {
                                        boolean showLines) {
         codeElement.setInnerHTML(createdContainer.getFirstChildElement().getInnerHTML());
 
-        codeElement.setAttribute("class", format("brush: {0}; pad-line-numbers: {1}",
+        codeElement.setAttribute("class", format("brush: {0}; " + SHOW_LINES_CLASS_ATTRIBUTE + ": {1}",
                 programmingLanguage.getCodeRendererName(),
                 Boolean.toString(showLines)
         ));
@@ -105,7 +108,7 @@ public class SyntaxHighlightCodeRenderer implements CodeRenderer {
         // instead of xml:lang
         Element container = DOM.createElement("div");
 
-        String preElementHtml = format("<pre class='brush: {0}; pad-line-numbers: {1}'></pre>",
+        String preElementHtml = format("<pre class='brush: {0}; " + SHOW_LINES_CLASS_ATTRIBUTE + ": {1}'></pre>",
                 programmingLanguage.getCodeRendererName(),
                 Boolean.toString(showLines)
         );
