@@ -97,10 +97,6 @@ public class SyntaxHighlightCodeRenderer implements CodeRenderer {
         createCss(visualEditor, programmingLanguage);
     }
 
-    private boolean hasAttribute(Element element, String s) {
-        return !"".equals(element.getAttribute(s));
-    }
-
     private Element renderCodeIntoContainer(VisualEditor visualEditor, String code,
                                             LanguageDefinitionVO programmingLanguage,
                                             boolean showLines) {
@@ -122,7 +118,7 @@ public class SyntaxHighlightCodeRenderer implements CodeRenderer {
     }
 
     private void createCss(VisualEditor visualEditor, LanguageDefinitionVO programmingLanguage) {
-        String cssSelector = format("pre.{0}",
+        String cssSelector = format("pre[class*='brush: {0};']",
             programmingLanguage.getCodeRendererName()
         );
 
