@@ -17,5 +17,5 @@ mvn clean install -Pproduction,mce,geshiwp
 . target/bin/package_wordpress_35.sh
 
 mvn clean install -Pproduction,mce,syntaxhighlight
-. target/bin/package_joomla_25.sh
 . target/bin/package_wordpress_35.sh
+. target/bin/package_joomla_25.sh
