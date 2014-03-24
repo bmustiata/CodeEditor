@@ -28,6 +28,7 @@ public class HtmlLanguageDefinitionsHolder extends LanguageDefinitionsHolder {
         addLanguage("Perl", PERL.toString(), PERL);
         addLanguage("PHP", PHP.toString(), PHP);
         addLanguage("PHP + HTML", PHP_HTML.toString(), PHP_HTML);
+        addLanguage("PowerShell", POWERSHELL.toString(), POWERSHELL);
         addLanguage("Python", PYTHON.toString(), PYTHON);
         addLanguage("Ruby", RUBY.toString(), RUBY);
         addLanguage("Shell", SHELL.toString(), SHELL);

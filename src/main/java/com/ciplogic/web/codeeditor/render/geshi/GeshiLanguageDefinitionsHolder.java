@@ -27,6 +27,7 @@ public class GeshiLanguageDefinitionsHolder extends LanguageDefinitionsHolder {
         addLanguage("Perl", "perl", ProgrammingLanguage.PERL);
         addLanguage("PHP", "php-brief", ProgrammingLanguage.PHP);
         addLanguage("PHP + HTML", "php", ProgrammingLanguage.PHP_HTML);
+        addLanguage("Powershell", "powershell", ProgrammingLanguage.POWERSHELL);
         addLanguage("Python", "python", ProgrammingLanguage.PYTHON);
         addLanguage("Ruby", "ruby", ProgrammingLanguage.RUBY);
         addLanguage("Shell", "bash", ProgrammingLanguage.SHELL);

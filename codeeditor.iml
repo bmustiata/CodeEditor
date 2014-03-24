@@ -9,6 +9,15 @@
         <webroots>
           <root url="file://$MODULE_DIR$/src/main/webapp" relative="/" />
         </webroots>
+        <sourceRoots>
+          <root url="file://$MODULE_DIR$/src/main/java" />
+          <root url="file://$MODULE_DIR$/src/main/resources" />
+          <root url="file://$MODULE_DIR$/bin" />
+          <root url="file://$MODULE_DIR$/src/main/php" />
+          <root url="file://$MODULE_DIR$/src/main/configuration/code_renderer/html" />
+          <root url="file://$MODULE_DIR$/src/main/configuration/visual_editor/mce" />
+          <root url="file://$MODULE_DIR$/src/main/devel" />
+        </sourceRoots>
       </configuration>
     </facet>
     <facet type="gwt" name="GWT">
@@ -29,7 +38,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src/main/resources" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/bin" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/php" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/main/configuration/code_renderer/syntaxhighlight" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/main/configuration/code_renderer/html" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/configuration/visual_editor/mce" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/devel" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/target/generated-sources/annotations" isTestSource="false" />
@@ -37,11 +46,13 @@
       <excludeFolder url="file://$MODULE_DIR$/target/.generated" />
       <excludeFolder url="file://$MODULE_DIR$/target/bin" />
       <excludeFolder url="file://$MODULE_DIR$/target/classes" />
-      <excludeFolder url="file://$MODULE_DIR$/target/codeeditor-1.0" />
+      <excludeFolder url="file://$MODULE_DIR$/target/codeeditor-1.1" />
       <excludeFolder url="file://$MODULE_DIR$/target/gwt-unitCache" />
+      <excludeFolder url="file://$MODULE_DIR$/target/joomla_2_5" />
       <excludeFolder url="file://$MODULE_DIR$/target/maven-archiver" />
       <excludeFolder url="file://$MODULE_DIR$/target/php" />
       <excludeFolder url="file://$MODULE_DIR$/target/surefire" />
+      <excludeFolder url="file://$MODULE_DIR$/target/wordpress_3_5" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
@@ -55,7 +66,7 @@
     <orderEntry type="library" name="Maven: javax.inject:javax.inject:1" level="project" />
     <orderEntry type="library" name="Maven: aopalliance:aopalliance:1.0" level="project" />
     <orderEntry type="library" name="Maven: com.google.inject.extensions:guice-assistedinject:3.0" level="project" />
-    <orderEntry type="library" name="Maven: com.ciplogic.gwt:ciplogic-gwt:1.0.0-SNAPSHOT" level="project" />
+    <orderEntry type="module" module-name="ciplogic-gwt" />
     <orderEntry type="library" name="Maven: org.fusesource.restygwt:restygwt:1.4-SNAPSHOT" level="project" />
   </component>
 </module>

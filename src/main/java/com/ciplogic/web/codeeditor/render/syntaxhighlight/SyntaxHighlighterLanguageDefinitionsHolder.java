@@ -23,6 +23,7 @@ public class SyntaxHighlighterLanguageDefinitionsHolder extends LanguageDefiniti
         addLanguage("JavaScript", "javascript", ProgrammingLanguage.JAVASCRIPT);
         addLanguage("Perl", "perl", ProgrammingLanguage.PERL);
         addLanguage("PHP", "php", ProgrammingLanguage.PHP);
+        addLanguage("PowerShell", "ps", ProgrammingLanguage.POWERSHELL);
         addLanguage("Python", "python", ProgrammingLanguage.PYTHON);
         addLanguage("Ruby", "ruby", ProgrammingLanguage.RUBY);
         addLanguage("Shell", "bash", ProgrammingLanguage.SHELL);
