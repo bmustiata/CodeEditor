@@ -9,15 +9,6 @@
         <webroots>
           <root url="file://$MODULE_DIR$/src/main/webapp" relative="/" />
         </webroots>
-        <sourceRoots>
-          <root url="file://$MODULE_DIR$/src/main/java" />
-          <root url="file://$MODULE_DIR$/src/main/resources" />
-          <root url="file://$MODULE_DIR$/bin" />
-          <root url="file://$MODULE_DIR$/src/main/php" />
-          <root url="file://$MODULE_DIR$/src/main/configuration/code_renderer/html" />
-          <root url="file://$MODULE_DIR$/src/main/configuration/visual_editor/mce" />
-          <root url="file://$MODULE_DIR$/src/main/devel" />
-        </sourceRoots>
       </configuration>
     </facet>
     <facet type="gwt" name="GWT">
