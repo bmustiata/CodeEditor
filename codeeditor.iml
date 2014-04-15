@@ -32,18 +32,8 @@
       <sourceFolder url="file://$MODULE_DIR$/src/main/configuration/code_renderer/html" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/configuration/visual_editor/mce" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/devel" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/target/generated-sources/annotations" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/${webappDirectory}/WEB-INF/classes" />
-      <excludeFolder url="file://$MODULE_DIR$/target/.generated" />
-      <excludeFolder url="file://$MODULE_DIR$/target/bin" />
-      <excludeFolder url="file://$MODULE_DIR$/target/classes" />
-      <excludeFolder url="file://$MODULE_DIR$/target/codeeditor-1.1" />
-      <excludeFolder url="file://$MODULE_DIR$/target/gwt-unitCache" />
-      <excludeFolder url="file://$MODULE_DIR$/target/joomla_2_5" />
-      <excludeFolder url="file://$MODULE_DIR$/target/maven-archiver" />
-      <excludeFolder url="file://$MODULE_DIR$/target/php" />
-      <excludeFolder url="file://$MODULE_DIR$/target/surefire" />
-      <excludeFolder url="file://$MODULE_DIR$/target/wordpress_3_5" />
+      <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
