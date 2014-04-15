@@ -28,25 +28,68 @@ public class TinyMceHook implements CodeEditorInjector {
 
         startInjectorMonitoring();
 
-        $wnd.tinyMCE.onAddEditor.add(function() {
-            startInjectorMonitoring();
-        });
+        if ($wnd.tinyMCE.onAddEditor) {
+            $wnd.tinyMCE.onAddEditor.add(function() {
+                startInjectorMonitoring();
+            });
+        }
 
         function areEditorsAvailable() {
             return $wnd.tinyMCE && $wnd.tinyMCE.editors && $wnd.tinyMCE.editors.length;
         }
 
         function isAnchorNodePresent(editor) {
-            return !!editor.getContainer().querySelector('a.mceButton');
+            return !!editor.getContainer().querySelector('a.mceButton') ||
+                !!editor.getContainer().querySelector('div.mce-btn button');
         }
 
         function injectIntoEditor(editor) {
             var button;
 
-            createEditorCommand(editor);
-            button = createEditorButton(editor.controlManager);
-            addButtonIntoEditor(editor, button);
+            if (editor.controlManager === "4") {
+                createEditorCommand(editor);
+                button = createEditorButton(editor.controlManager);
+                addButtonIntoEditor(editor, button);
+            } else {
+                injectIntoEditorVersion4(editor);
+            }
+
             markEditorInjected(editor);
+        }
+
+        function injectIntoEditorVersion4(editor) {
+            var codeRenderer = "${code.renderer}";
+            var bodyDiv, divButton, button, img;
+
+            var containerDiv = $doc.createElement("div");
+            containerDiv.setAttribute("class", "mce-container mce-last mce-flow-layout-item mce-btn-group");
+
+            bodyDiv = $doc.createElement("div");
+            containerDiv.appendChild(bodyDiv);
+
+            divButton = $doc.createElement("div");
+            divButton.setAttribute("class", "mce-widget mce-btn mce-first mce-last");
+            divButton.setAttribute("role", "button");
+            divButton.setAttribute("tabindex", "-1");
+            bodyDiv.appendChild( divButton );
+
+            button = $doc.createElement("button");
+            button.setAttribute("role", "presentation");
+            button.setAttribute("type", "button");
+            button.setAttribute("tabindex", "-1");
+            divButton.appendChild(button);
+
+            img = $doc.createElement("img");
+            img.setAttribute("src", @com.google.gwt.core.client.GWT::getModuleBaseForStaticFiles()() + "img/" + codeRenderer + ".png");
+            button.appendChild(img);
+
+            editor.getContainer().querySelector('div.mce-toolbar-grp div.mce-toolbar div.mce-container-body').appendChild(containerDiv);
+
+            var tinyMceVisualEditor = @com.ciplogic.web.codeeditor.CodeEditor::createEditor(Lcom/google/gwt/core/client/JavaScriptObject;)(editor);
+
+            button.onclick = function() {
+                @com.ciplogic.web.codeeditor.CodeEditor::showEditor(Lcom/ciplogic/web/codeeditor/editor/VisualEditor;)(tinyMceVisualEditor);
+            }
         }
 
         function createEditorCommand(editor){
